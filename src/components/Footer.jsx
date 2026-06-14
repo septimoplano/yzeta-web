@@ -19,8 +19,17 @@ export default function Footer() {
   };
 
   return (
-    <Box component="footer" sx={{ bgcolor: tokens.surface, borderTop: `1px solid ${tokens.border}`, pt: { xs: 6, md: 8 }, pb: 4 }}>
-      <Container>
+    <Box component="footer" sx={{ position: 'relative', overflow: 'hidden', bgcolor: tokens.surface, borderTop: `1px solid ${tokens.border}`, pt: { xs: 6, md: 8 }, pb: 4 }}>
+      {/* Watermark de marca */}
+      <Box aria-hidden sx={{
+        position: 'absolute', left: '50%', bottom: { xs: -18, md: -42 }, transform: 'translateX(-50%)',
+        fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700,
+        fontSize: 'clamp(5rem, 22vw, 18rem)', lineHeight: 1, letterSpacing: '-0.04em',
+        color: tokens.text, opacity: 0.025, whiteSpace: 'nowrap', pointerEvents: 'none', userSelect: 'none',
+      }}>
+        YZETA
+      </Box>
+      <Container sx={{ position: 'relative' }}>
         <Box sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', sm: '1.4fr 1fr 1fr' },

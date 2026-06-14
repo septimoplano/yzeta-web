@@ -4,6 +4,7 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutlined';
 import { tokens } from '../theme';
 import { waURL, MSG } from '../utils/whatsapp';
 import { Reveal } from './Reveal';
+import { CornerTicks } from './brand';
 
 const bullets = [
   'Diagnóstico de tu presencia digital actual',
@@ -16,9 +17,11 @@ export default function Asesoria() {
     <Box component="section" sx={{ py: { xs: 6, md: 9 } }}>
       <Container>
         <Reveal>
+          <Box sx={{ position: 'relative' }}>
+          <CornerTicks size={16} />
           <Box sx={{
             position: 'relative', overflow: 'hidden',
-            borderRadius: 4, border: `1px solid ${tokens.border}`,
+            borderRadius: 3, border: `1px solid ${tokens.border}`,
             bgcolor: tokens.surface2,
             p: { xs: 3.5, md: 6 },
           }}>
@@ -58,6 +61,7 @@ export default function Asesoria() {
                 ))}
               </Stack>
             </Box>
+          </Box>
           </Box>
         </Reveal>
       </Container>

@@ -60,9 +60,10 @@ export default function Portafolio() {
                   border: `1px solid ${tokens.border}`, bgcolor: tokens.bg,
                   textDecoration: 'none', height: '100%',
                   transition: 'border-color .3s ease, transform .3s ease',
-                  '&:hover': { borderColor: tokens.accentY, transform: 'translateY(-6px)' },
+                  '&:hover': { borderColor: tokens.accentY, transform: 'translateY(-6px)', boxShadow: `0 20px 48px rgba(0,0,0,0.45)` },
                   '&:hover .yz-thumb': { transform: reduce ? 'none' : 'scale(1.05)' },
-                  '&:hover .yz-go': { color: tokens.accentY },
+                  '&:hover .yz-go': { color: tokens.accentY, transform: reduce ? 'none' : 'translate(3px,-3px)' },
+                  '&:hover .yz-veil': { opacity: 1 },
                 }}
               >
                 <Box sx={{ position: 'relative', aspectRatio: '16 / 10', overflow: 'hidden' }}>
@@ -78,6 +79,26 @@ export default function Portafolio() {
                   ) : (
                     <Placeholder nombre={p.nombre} />
                   )}
+                  {/* badge en vivo */}
+                  <Stack direction="row" alignItems="center" spacing={0.8} sx={{
+                    position: 'absolute', top: 12, left: 12, zIndex: 1,
+                    px: 1.2, py: 0.5, borderRadius: 1,
+                    bgcolor: 'rgba(8,12,16,0.72)', backdropFilter: 'blur(6px)',
+                    border: `1px solid ${tokens.border}`,
+                  }}>
+                    <Box sx={{
+                      width: 7, height: 7, borderRadius: '50%', bgcolor: tokens.accentY,
+                      animation: reduce ? 'none' : 'yz-livedot 2s ease-in-out infinite',
+                    }} />
+                    <Box component="span" sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 10.5, letterSpacing: '0.1em', color: tokens.text }}>
+                      EN VIVO
+                    </Box>
+                  </Stack>
+                  {/* overlay gradiente al hover */}
+                  <Box className="yz-veil" aria-hidden sx={{
+                    position: 'absolute', inset: 0, opacity: 0, transition: 'opacity .35s ease',
+                    background: `linear-gradient(180deg, transparent 40%, ${tokens.bg}cc)`,
+                  }} />
                 </Box>
                 <Box sx={{ p: 3 }}>
                   <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', color: tokens.faint, fontSize: 12, mb: 1 }}>
@@ -87,7 +108,7 @@ export default function Portafolio() {
                     <Typography variant="h5" sx={{ fontSize: 22, color: tokens.text }}>
                       {p.nombre}
                     </Typography>
-                    <ArrowOutwardIcon className="yz-go" sx={{ color: tokens.muted, fontSize: 22, transition: 'color .3s ease' }} />
+                    <ArrowOutwardIcon className="yz-go" sx={{ color: tokens.muted, fontSize: 22, transition: 'color .3s ease, transform .3s ease' }} />
                   </Stack>
                   <Typography sx={{ color: tokens.muted, fontSize: 15, lineHeight: 1.6 }}>
                     {p.descripcion}

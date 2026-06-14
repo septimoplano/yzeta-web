@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Navbar from './components/Navbar';
+import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
 import Servicios from './components/Servicios';
 import Asesoria from './components/Asesoria';
@@ -16,6 +17,7 @@ import Privacidad from './pages/Privacidad';
 function Home() {
   return (
     <Box sx={{ bgcolor: 'background.default', overflowX: 'hidden' }}>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

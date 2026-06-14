@@ -6,6 +6,7 @@ import { tokens } from '../theme';
 import { servicios } from '../data';
 import { waURL, MSG } from '../utils/whatsapp';
 import { Reveal } from './Reveal';
+import { GridField } from './brand';
 
 const EASE = [0.16, 1, 0.3, 1];
 const clp = (n) => '$' + n.toLocaleString('es-CL');
@@ -14,8 +15,9 @@ export default function Servicios() {
   const reduce = useReducedMotion();
 
   return (
-    <Box id="servicios" component="section" sx={{ py: { xs: 9, md: 14 } }}>
-      <Container>
+    <Box id="servicios" component="section" sx={{ position: 'relative', overflow: 'hidden', py: { xs: 9, md: 14 } }}>
+      <GridField size={56} opacity={0.3} mask="radial-gradient(ellipse 80% 60% at 20% 0%, #000 0%, transparent 75%)" />
+      <Container sx={{ position: 'relative' }}>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', color: tokens.text, maxWidth: 720, textWrap: 'balance' }}>
             Tres formas de poner tu negocio online.
@@ -45,9 +47,10 @@ export default function Servicios() {
                 display: 'flex', flexDirection: 'column', width: '100%',
                 borderColor: s.popular ? tokens.accentY : tokens.border,
                 bgcolor: s.popular ? tokens.surface2 : tokens.surface,
+                boxShadow: s.popular ? `0 0 40px ${tokens.accentZ}1f` : 'none',
                 position: 'relative',
-                transition: 'transform .3s ease, border-color .3s ease',
-                '&:hover': { transform: 'translateY(-6px)', borderColor: tokens.accentY },
+                transition: 'transform .3s ease, border-color .3s ease, box-shadow .3s ease',
+                '&:hover': { transform: 'translateY(-6px)', borderColor: tokens.accentY, boxShadow: `0 20px 48px rgba(0,0,0,0.4), 0 0 32px ${tokens.accentZ}1f` },
               }}>
                 <CardContent sx={{ p: 3.5, display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <Stack direction="row" justifyContent="flex-end" alignItems="center" sx={{ mb: 1, minHeight: 24 }}>

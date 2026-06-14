@@ -89,8 +89,57 @@ export default function Hero() {
               </Button>
             </Stack>
           </motion.div>
+
+          <motion.div {...rise(0.46)}>
+            <Stack
+              direction="row" flexWrap="wrap"
+              divider={<Box component="span" sx={{ color: tokens.accentY }}>·</Box>}
+              spacing={2}
+              sx={{
+                mt: 5, fontFamily: '"JetBrains Mono", monospace', fontSize: 13,
+                color: tokens.faint, rowGap: 1,
+              }}
+            >
+              {['Concepción · Gran Conce', '5–10 días hábiles', 'Precio fijo'].map((t) => (
+                <Box component="span" key={t}>{t}</Box>
+              ))}
+            </Stack>
+          </motion.div>
         </Box>
       </Container>
+
+      {/* Marca de registro — coordenada de Concepción. Local + técnico. */}
+      <Box aria-hidden sx={{
+        display: { xs: 'none', md: 'block' },
+        position: 'absolute', bottom: 28, right: 32, zIndex: 1,
+        fontFamily: '"JetBrains Mono", monospace', fontSize: 12, color: tokens.faint, opacity: 0.7,
+        letterSpacing: '0.05em',
+      }}>
+        36.83°S · 73.05°W
+      </Box>
+
+      {/* Indicador de scroll */}
+      <Box aria-hidden sx={{
+        display: { xs: 'none', md: 'flex' },
+        position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', zIndex: 1,
+        flexDirection: 'column', alignItems: 'center', gap: 1,
+      }}>
+        <Box component="span" sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, color: tokens.faint, letterSpacing: '0.15em' }}>
+          SCROLL
+        </Box>
+        <Box sx={{ position: 'relative', width: 1, height: 36, bgcolor: tokens.border, overflow: 'hidden' }}>
+          <Box sx={{
+            position: 'absolute', top: 0, left: 0, width: 1, height: 12, bgcolor: tokens.accentY,
+            animation: reduce ? 'none' : 'yz-scrollcue 1.8s ease-in-out infinite',
+          }} />
+        </Box>
+      </Box>
+
+      {/* Fade hacia la siguiente sección */}
+      <Box aria-hidden sx={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: 120,
+        background: `linear-gradient(transparent, ${tokens.bg})`, pointerEvents: 'none',
+      }} />
     </Box>
   );
 }
