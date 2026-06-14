@@ -11,12 +11,6 @@ html { scroll-behavior: smooth; }
 }
 body { margin: 0; background: #080c10; }
 
-/* Marquee — loop CSS puro (no depende de JS) */
-@keyframes yz-marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
 /* Grid técnico del hero */
 @keyframes yz-grid-drift {
   from { transform: translateY(0); }

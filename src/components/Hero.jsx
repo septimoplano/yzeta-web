@@ -50,16 +50,6 @@ export default function Hero() {
 
       <Container sx={{ position: 'relative', zIndex: 1 }}>
         <Box sx={{ maxWidth: 880 }}>
-          <motion.div {...rise(0)}>
-            <Typography sx={{
-              fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY,
-              fontSize: 14, mb: 3, display: 'flex', alignItems: 'center', gap: 1.2,
-            }}>
-              <Box component="span" sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: tokens.accentY, boxShadow: `0 0 12px ${tokens.accentY}` }} />
-              Consultora digital · Concepción, Chile
-            </Typography>
-          </motion.div>
-
           <motion.div {...rise(0.1)}>
             <Typography variant="h1" sx={{
               fontSize: 'clamp(2.6rem, 7vw, 5.2rem)',

@@ -50,10 +50,7 @@ export default function Servicios() {
                 '&:hover': { transform: 'translateY(-6px)', borderColor: tokens.accentY },
               }}>
                 <CardContent sx={{ p: 3.5, display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-                    <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 13, color: tokens.faint }}>
-                      {String(i + 1).padStart(2, '0')}
-                    </Typography>
+                  <Stack direction="row" justifyContent="flex-end" alignItems="center" sx={{ mb: 1, minHeight: 24 }}>
                     {s.popular && (
                       <Chip label="Más elegido" size="small"
                         sx={{ bgcolor: tokens.accentY, color: '#04201b', fontWeight: 700, fontSize: 12 }} />
@@ -101,19 +98,14 @@ export default function Servicios() {
         </Box>
 
         <Reveal delay={0.1}>
-          <Box sx={{
-            mt: 4, p: 2.5, borderRadius: 2, border: `1px solid ${tokens.border}`,
-            bgcolor: tokens.surface, display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap',
+          <Typography sx={{
+            mt: 3, fontFamily: '"JetBrains Mono", monospace', fontSize: 13,
+            color: tokens.faint, lineHeight: 1.7,
           }}>
-            <Box component="span" sx={{ fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY, fontSize: 13 }}>
-              {'//'}
-            </Box>
-            <Typography sx={{ color: tokens.muted, fontSize: 15 }}>
-              Dominio incluido el primer año. Mantención mensual desde{' '}
-              <Box component="span" sx={{ color: tokens.text, fontWeight: 600 }}>$35.000</Box>{' '}
-              a partir del segundo mes.
-            </Typography>
-          </Box>
+            Dominio incluido el primer año. Mantención mensual desde{' '}
+            <Box component="span" sx={{ color: tokens.muted }}>$35.000</Box>{' '}
+            a partir del segundo mes.
+          </Typography>
         </Reveal>
       </Container>
     </Box>

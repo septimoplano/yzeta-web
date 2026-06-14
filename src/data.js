@@ -67,8 +67,3 @@ export const proyectos = [
     img: null,
   },
 ];
-
-export const marqueeItems = [
-  'Desarrollo Web', 'Booking Online', 'E-commerce', 'SEO',
-  'WebPay', 'Soporte Continuo', 'Gran Conce',
-];

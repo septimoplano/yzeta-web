@@ -22,13 +22,6 @@ export default function ComoTrabajamos() {
         </Reveal>
 
         <Box sx={{ mt: 7, position: 'relative' }}>
-          {/* línea conectora */}
-          <Box aria-hidden sx={{
-            position: 'absolute',
-            display: { xs: 'none', md: 'block' },
-            top: 34, left: '12.5%', right: '12.5%', height: 1,
-            background: `linear-gradient(90deg, ${tokens.border}, ${tokens.accentZ}55, ${tokens.border})`,
-          }} />
           <Box sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },

@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Marquee from './components/Marquee';
 import Servicios from './components/Servicios';
 import Asesoria from './components/Asesoria';
 import ComoTrabajamos from './components/ComoTrabajamos';
@@ -20,7 +19,6 @@ function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Marquee />
         <Servicios />
         <Asesoria />
         <ComoTrabajamos />
