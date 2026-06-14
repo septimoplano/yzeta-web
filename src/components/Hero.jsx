@@ -1,0 +1,106 @@
+import { Box, Container, Typography, Button, Stack } from '@mui/material';
+import { motion, useReducedMotion } from 'framer-motion';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { tokens } from '../theme';
+import { waURL, MSG } from '../utils/whatsapp';
+
+const EASE = [0.16, 1, 0.3, 1];
+
+export default function Hero() {
+  const reduce = useReducedMotion();
+
+  const rise = (delay) => reduce
+    ? {}
+    : { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: EASE, delay } };
+
+  const scrollToServicios = () =>
+    document.querySelector('#servicios')?.scrollIntoView({ behavior: 'smooth' });
+
+  return (
+    <Box
+      id="top"
+      component="section"
+      sx={{
+        position: 'relative',
+        minHeight: { xs: '92vh', md: '100vh' },
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        pt: { xs: 12, md: 0 },
+      }}
+    >
+      {/* Grid técnico de fondo */}
+      <Box aria-hidden sx={{
+        position: 'absolute', inset: '-40px 0',
+        backgroundImage: `linear-gradient(${tokens.border} 1px, transparent 1px), linear-gradient(90deg, ${tokens.border} 1px, transparent 1px)`,
+        backgroundSize: '64px 64px',
+        opacity: 0.35,
+        maskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
+        animation: reduce ? 'none' : 'yz-grid-drift 8s linear infinite alternate',
+      }} />
+      {/* Halo teal sutil, no glow SaaS — direccional y tenue */}
+      <Box aria-hidden sx={{
+        position: 'absolute', top: '8%', right: '-10%',
+        width: 520, height: 520, borderRadius: '50%',
+        background: `radial-gradient(circle, ${tokens.accentZ}22 0%, transparent 65%)`,
+        filter: 'blur(8px)', pointerEvents: 'none',
+      }} />
+
+      <Container sx={{ position: 'relative', zIndex: 1 }}>
+        <Box sx={{ maxWidth: 880 }}>
+          <motion.div {...rise(0)}>
+            <Typography sx={{
+              fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY,
+              fontSize: 14, mb: 3, display: 'flex', alignItems: 'center', gap: 1.2,
+            }}>
+              <Box component="span" sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: tokens.accentY, boxShadow: `0 0 12px ${tokens.accentY}` }} />
+              Consultora digital · Concepción, Chile
+            </Typography>
+          </motion.div>
+
+          <motion.div {...rise(0.1)}>
+            <Typography variant="h1" sx={{
+              fontSize: 'clamp(2.6rem, 7vw, 5.2rem)',
+              color: tokens.text,
+              textWrap: 'balance',
+            }}>
+              Tu negocio en digital.{' '}
+              <Box component="span" sx={{ color: tokens.accentY }}>Sin excusas.</Box>
+            </Typography>
+          </motion.div>
+
+          <motion.div {...rise(0.2)}>
+            <Typography sx={{
+              mt: 3, fontSize: { xs: 17, md: 20 }, color: tokens.muted,
+              maxWidth: 620, lineHeight: 1.6, textWrap: 'pretty',
+            }}>
+              Desarrollo web para empresas del Gran Conce que quieren resultados reales.
+              Sitios, agendamiento y tiendas online. Precio fijo, sin humo.
+            </Typography>
+          </motion.div>
+
+          <motion.div {...rise(0.32)}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.8} sx={{ mt: 5 }}>
+              <Button
+                size="large" variant="contained" color="primary"
+                href={waURL(MSG.asesoria)} target="_blank" rel="noopener"
+                startIcon={<WhatsAppIcon />}
+              >
+                Agendar asesoría gratuita
+              </Button>
+              <Button
+                size="large" variant="outlined"
+                onClick={scrollToServicios}
+                endIcon={<ArrowDownwardIcon />}
+              >
+                Ver servicios
+              </Button>
+            </Stack>
+          </motion.div>
+        </Box>
+      </Container>
+    </Box>
+  );
+}

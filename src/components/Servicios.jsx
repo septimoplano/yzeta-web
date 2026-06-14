@@ -1,0 +1,121 @@
+import { Box, Container, Typography, Card, CardContent, Button, Chip, Stack } from '@mui/material';
+import { motion, useReducedMotion } from 'framer-motion';
+import CheckIcon from '@mui/icons-material/Check';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { tokens } from '../theme';
+import { servicios } from '../data';
+import { waURL, MSG } from '../utils/whatsapp';
+import { Reveal } from './Reveal';
+
+const EASE = [0.16, 1, 0.3, 1];
+const clp = (n) => '$' + n.toLocaleString('es-CL');
+
+export default function Servicios() {
+  const reduce = useReducedMotion();
+
+  return (
+    <Box id="servicios" component="section" sx={{ py: { xs: 9, md: 14 } }}>
+      <Container>
+        <Reveal>
+          <Typography variant="h2" sx={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', color: tokens.text, maxWidth: 720, textWrap: 'balance' }}>
+            Tres formas de poner tu negocio online.
+          </Typography>
+          <Typography sx={{ mt: 2, color: tokens.muted, fontSize: 18, maxWidth: 560 }}>
+            Precio fijo. Sin letra chica. Eliges lo que tu negocio necesita hoy.
+          </Typography>
+        </Reveal>
+
+        <Box sx={{
+          mt: 6,
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+          gap: 2.5,
+          alignItems: 'stretch',
+        }}>
+          {servicios.map((s, i) => (
+            <motion.div
+              key={s.id}
+              initial={reduce ? false : { opacity: 0, y: 28 }}
+              whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, ease: EASE, delay: i * 0.1 }}
+              style={{ display: 'flex' }}
+            >
+              <Card sx={{
+                display: 'flex', flexDirection: 'column', width: '100%',
+                borderColor: s.popular ? tokens.accentY : tokens.border,
+                bgcolor: s.popular ? tokens.surface2 : tokens.surface,
+                position: 'relative',
+                transition: 'transform .3s ease, border-color .3s ease',
+                '&:hover': { transform: 'translateY(-6px)', borderColor: tokens.accentY },
+              }}>
+                <CardContent sx={{ p: 3.5, display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+                    <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 13, color: tokens.faint }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </Typography>
+                    {s.popular && (
+                      <Chip label="Más elegido" size="small"
+                        sx={{ bgcolor: tokens.accentY, color: '#04201b', fontWeight: 700, fontSize: 12 }} />
+                    )}
+                  </Stack>
+
+                  <Typography variant="h5" sx={{ fontSize: 22, color: tokens.text, mb: 1.5 }}>
+                    {s.nombre}
+                  </Typography>
+
+                  <Typography sx={{
+                    fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700,
+                    fontSize: 34, color: s.popular ? tokens.accentY : tokens.text, mb: 2,
+                  }}>
+                    {clp(s.precio)}
+                  </Typography>
+
+                  <Typography sx={{ color: tokens.muted, fontSize: 15, mb: 3, lineHeight: 1.6 }}>
+                    {s.descripcion}
+                  </Typography>
+
+                  <Stack spacing={1.2} sx={{ mb: 3.5 }}>
+                    {s.incluye.map((f) => (
+                      <Stack key={f} direction="row" spacing={1.2} alignItems="center">
+                        <CheckIcon sx={{ fontSize: 18, color: tokens.accentY }} />
+                        <Typography sx={{ color: tokens.text, fontSize: 15 }}>{f}</Typography>
+                      </Stack>
+                    ))}
+                  </Stack>
+
+                  <Button
+                    variant={s.popular ? 'contained' : 'outlined'}
+                    color="primary"
+                    href={waURL(MSG.servicio(s.nombre))} target="_blank" rel="noopener"
+                    startIcon={<WhatsAppIcon />}
+                    sx={{ mt: 'auto' }}
+                    fullWidth
+                  >
+                    Lo quiero
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </Box>
+
+        <Reveal delay={0.1}>
+          <Box sx={{
+            mt: 4, p: 2.5, borderRadius: 2, border: `1px solid ${tokens.border}`,
+            bgcolor: tokens.surface, display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap',
+          }}>
+            <Box component="span" sx={{ fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY, fontSize: 13 }}>
+              {'//'}
+            </Box>
+            <Typography sx={{ color: tokens.muted, fontSize: 15 }}>
+              Dominio incluido el primer año. Mantención mensual desde{' '}
+              <Box component="span" sx={{ color: tokens.text, fontWeight: 600 }}>$35.000</Box>{' '}
+              a partir del segundo mes.
+            </Typography>
+          </Box>
+        </Reveal>
+      </Container>
+    </Box>
+  );
+}
