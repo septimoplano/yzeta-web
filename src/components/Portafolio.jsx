@@ -79,21 +79,6 @@ export default function Portafolio() {
                   ) : (
                     <Placeholder nombre={p.nombre} />
                   )}
-                  {/* badge en vivo */}
-                  <Stack direction="row" alignItems="center" spacing={0.8} sx={{
-                    position: 'absolute', top: 12, left: 12, zIndex: 1,
-                    px: 1.2, py: 0.5, borderRadius: 1,
-                    bgcolor: 'rgba(8,12,16,0.72)', backdropFilter: 'blur(6px)',
-                    border: `1px solid ${tokens.border}`,
-                  }}>
-                    <Box sx={{
-                      width: 7, height: 7, borderRadius: '50%', bgcolor: tokens.accentY,
-                      animation: reduce ? 'none' : 'yz-livedot 2s ease-in-out infinite',
-                    }} />
-                    <Box component="span" sx={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 10.5, letterSpacing: '0.1em', color: tokens.text }}>
-                      EN VIVO
-                    </Box>
-                  </Stack>
                   {/* overlay gradiente al hover */}
                   <Box className="yz-veil" aria-hidden sx={{
                     position: 'absolute', inset: 0, opacity: 0, transition: 'opacity .35s ease',

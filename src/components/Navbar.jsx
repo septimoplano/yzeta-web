@@ -65,8 +65,8 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); go('#top'); }}
               sx={{ display: 'flex', alignItems: 'center', mr: 'auto' }}
             >
-              <Box component="img" src="/assets/logo.png" alt="YZETA Consultora Digital"
-                sx={{ height: { xs: 26, md: 30 }, display: 'block' }} />
+              <Box component="img" src="/assets/logo-white.png" alt="YZETA Consultora Digital"
+                sx={{ height: { xs: 44, md: 52 }, display: 'block' }} />
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, alignItems: 'center' }}>

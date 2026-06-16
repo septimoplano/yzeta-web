@@ -31,11 +31,8 @@ export default function PorQueYZETA() {
                 Te decimos qué necesitas y qué no — aunque sea menos de lo que pensabas contratar.
               </Typography>
 
-              {/* Bloque manifiesto — marca de plano técnico */}
-              <Box sx={{
-                position: 'relative', p: { xs: 3, md: 3.5 },
-                bgcolor: tokens.surface2, border: `1px solid ${tokens.border}`, borderRadius: 2,
-              }}>
+              {/* Bloque manifiesto — marca de plano técnico, solo corner ticks */}
+              <Box sx={{ position: 'relative', p: { xs: 3, md: 3.5 } }}>
                 <CornerTicks size={14} />
                 <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY, fontSize: 12, mb: 1.5 }}>
                   // manifiesto
