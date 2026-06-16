@@ -32,6 +32,16 @@ export default function Hero() {
         pt: { xs: 12, md: 0 },
       }}
     >
+      {/* Grid técnico de fondo */}
+      <Box aria-hidden sx={{
+        position: 'absolute', inset: '-40px 0',
+        backgroundImage: `linear-gradient(${tokens.border} 1px, transparent 1px), linear-gradient(90deg, ${tokens.border} 1px, transparent 1px)`,
+        backgroundSize: '64px 64px',
+        opacity: 0.35,
+        maskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
+        animation: reduce ? 'none' : 'yz-grid-drift 8s linear infinite alternate',
+      }} />
       {/* Campo de datos animado — parte inferior del background, difuminado */}
       <Box aria-hidden sx={{
         position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 0,
@@ -105,6 +115,12 @@ export default function Hero() {
       }}>
         36.83°S · 73.05°W
       </Box>
+
+      {/* Fade hacia la siguiente sección */}
+      <Box aria-hidden sx={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: 120,
+        background: `linear-gradient(transparent, ${tokens.bg})`, pointerEvents: 'none',
+      }} />
     </Box>
   );
 }
