@@ -4,6 +4,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { tokens } from '../theme';
 import { waURL, MSG } from '../utils/whatsapp';
+import HeroShader from './HeroShader';
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -40,12 +41,15 @@ export default function Hero() {
         WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
         animation: reduce ? 'none' : 'yz-grid-drift 8s linear infinite alternate',
       }} />
-      {/* Halo teal sutil, no glow SaaS — direccional y tenue */}
+      {/* Shader del hero (fetch en runtime desde shaders.com, code-split) */}
+      <Box aria-hidden sx={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        <HeroShader />
+      </Box>
+
+      {/* Scrim de legibilidad — oscurece la izquierda donde va el texto */}
       <Box aria-hidden sx={{
-        position: 'absolute', top: '8%', right: '-10%',
-        width: 520, height: 520, borderRadius: '50%',
-        background: `radial-gradient(circle, ${tokens.accentZ}22 0%, transparent 65%)`,
-        filter: 'blur(8px)', pointerEvents: 'none',
+        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+        background: `linear-gradient(90deg, ${tokens.bg}f2 0%, ${tokens.bg}b3 42%, ${tokens.bg}33 70%, transparent 100%)`,
       }} />
 
       <Container sx={{ position: 'relative', zIndex: 1 }}>

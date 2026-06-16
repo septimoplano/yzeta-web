@@ -15,9 +15,11 @@
     "@mui/icons-material": "^9.1.1",
     "@mui/material": "^9.1.1",
     "framer-motion": "^12.40.0",
+    "pixi.js": "^8.19.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.17.0"
+    "react-router-dom": "^7.17.0",
+    "shaders": "^2.5.130"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
