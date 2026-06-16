@@ -16,7 +16,12 @@ export default function Servicios() {
 
   return (
     <Box id="servicios" component="section" sx={{ position: 'relative', overflow: 'hidden', py: { xs: 9, md: 14 } }}>
-      <GridField size={56} opacity={0.3} mask="radial-gradient(ellipse 80% 60% at 20% 0%, #000 0%, transparent 75%)" />
+      <GridField size={56} opacity={0.3} sx={{
+        maskImage: 'radial-gradient(ellipse 80% 60% at 20% 0%, #000 0%, transparent 75%), linear-gradient(to bottom, transparent 0%, #000 18%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 20% 0%, #000 0%, transparent 75%), linear-gradient(to bottom, transparent 0%, #000 18%)',
+        maskComposite: 'intersect',
+        WebkitMaskComposite: 'source-in',
+      }} />
       <Container sx={{ position: 'relative' }}>
         <Reveal>
           <Typography variant="h2" sx={{ fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', color: tokens.text, maxWidth: 720, textWrap: 'balance' }}>
