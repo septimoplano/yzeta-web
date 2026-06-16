@@ -30,7 +30,7 @@ export default function Footer() {
             <Box component="img" src="/assets/logo-white.png" alt="YZETA Consultora Digital"
               sx={{ height: 60, mb: 2, display: 'block' }} />
             <Typography sx={{ color: tokens.muted, fontSize: 15, maxWidth: 320, lineHeight: 1.6 }}>
-              Consultora digital en Concepción. Desarrollo web con resultados reales para el Gran Conce.
+              Consultora digital en Concepción.<br />Desarrollo web con resultados reales para el Gran Conce.
             </Typography>
           </Box>
 
