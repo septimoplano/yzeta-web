@@ -6,7 +6,6 @@ import { tokens } from '../theme';
 import { servicios } from '../data';
 import { waURL, MSG } from '../utils/whatsapp';
 import { Reveal } from './Reveal';
-import { GridField } from './brand';
 import HeroDataField from './HeroDataField';
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -17,7 +16,6 @@ export default function Servicios() {
 
   return (
     <Box id="servicios" component="section" sx={{ position: 'relative', overflow: 'hidden', py: { xs: 9, md: 14 } }}>
-      <GridField size={56} opacity={0.3} mask="radial-gradient(ellipse 80% 60% at 20% 0%, #000 0%, transparent 75%)" />
       {/* Campo de datos en la parte superior — continua el stream del hero, difuminado hacia abajo */}
       <Box aria-hidden sx={{
         position: 'absolute', left: 0, right: 0, top: 0, zIndex: 0,

@@ -45,16 +45,6 @@ export default function HeroDataField() {
       }
     };
 
-    const drawGrid = () => {
-      ctx.clearRect(0, 0, w, h);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = `rgba(${TEAL},0.05)`;
-      for (let x = G; x < w; x += G) { ctx.beginPath(); ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); ctx.stroke(); }
-      for (let y = G; y < h; y += G) { ctx.beginPath(); ctx.moveTo(0, y + 0.5); ctx.lineTo(w, y + 0.5); ctx.stroke(); }
-      ctx.fillStyle = `rgba(${TEAL},0.09)`;
-      for (let x = G; x < w; x += G) for (let y = G; y < h; y += G) { ctx.beginPath(); ctx.arc(x, y, 1.1, 0, 6.283); ctx.fill(); }
-    };
-
     const drawPacket = (p) => {
       if (p.axis === 'h') {
         const x0 = p.x, x1 = p.x - p.dir * p.len;
@@ -91,7 +81,7 @@ export default function HeroDataField() {
 
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000); last = now;
-      drawGrid();
+      ctx.clearRect(0, 0, w, h);
       for (const p of packets) { step(p, dt); drawPacket(p); }
       if (running) raf = requestAnimationFrame(frame);
     };
@@ -100,7 +90,7 @@ export default function HeroDataField() {
     window.addEventListener('resize', resize);
 
     if (reduce) {
-      drawGrid(); // estático
+      ctx.clearRect(0, 0, w, h); // sin movimiento; la grilla compartida da la textura
       return () => window.removeEventListener('resize', resize);
     }
 

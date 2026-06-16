@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
+import { GridField } from './components/brand';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
@@ -20,8 +21,17 @@ function Home() {
       <ScrollProgress />
       <Navbar />
       <main>
-        <Hero />
-        <Servicios />
+        {/* Fondo continuo compartido: una sola grilla detras de Hero + Servicios */}
+        <Box sx={{ position: 'relative' }}>
+          <GridField
+            size={64}
+            opacity={0.3}
+            mask="linear-gradient(to bottom, #000 0%, #000 84%, transparent 100%)"
+            sx={{ inset: '-40px 0', animation: 'yz-grid-drift 8s linear infinite alternate' }}
+          />
+          <Hero />
+          <Servicios />
+        </Box>
         <Asesoria />
         <ComoTrabajamos />
         <PorQueYZETA />
