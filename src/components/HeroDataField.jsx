@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useReducedMotion } from 'framer-motion';
-import { tokens } from '../theme';
 
-const G = 64;            // paso de grid, igual al hero
+const G = 64;              // paso de grid, igual al del hero
 const TEAL = '94,234,212'; // tokens.accentY en rgb
 
-export default function DataStream() {
+// Campo de datos animado para el background del hero (canvas only, sin texto).
+export default function HeroDataField() {
   const ref = useRef(null);
   const reduce = useReducedMotion();
 
@@ -100,8 +100,7 @@ export default function DataStream() {
     window.addEventListener('resize', resize);
 
     if (reduce) {
-      // Estático: solo grid + nodos, sin movimiento.
-      drawGrid();
+      drawGrid(); // estático
       return () => window.removeEventListener('resize', resize);
     }
 
@@ -114,34 +113,7 @@ export default function DataStream() {
   }, [reduce]);
 
   return (
-    <Box component="section" sx={{
-      position: 'relative', overflow: 'hidden',
-      height: { xs: 220, md: 280 },
-      bgcolor: tokens.bg, borderBlock: `1px solid ${tokens.border}`,
-    }}>
-      <Box component="canvas" ref={ref} aria-hidden sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
-
-      {/* Mascara: difumina bordes laterales y centro para legibilidad */}
-      <Box aria-hidden sx={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: `linear-gradient(90deg, ${tokens.bg} 0%, transparent 14%, transparent 86%, ${tokens.bg} 100%),
-                     radial-gradient(ellipse 55% 120% at 50% 50%, ${tokens.bg}cc 0%, transparent 70%)`,
-      }} />
-
-      {/* Etiqueta mono + frase de marca */}
-      <Container sx={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 1.5 }}>
-        <Typography sx={{ fontFamily: '"JetBrains Mono", monospace', color: tokens.accentY, fontSize: 12, letterSpacing: '0.18em' }}>
-          // EN PRODUCCIÓN
-        </Typography>
-        <Typography sx={{
-          fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700,
-          fontSize: 'clamp(1.5rem, 4vw, 2.6rem)', color: tokens.text,
-          textAlign: 'center', textWrap: 'balance', lineHeight: 1.2,
-        }}>
-          Menos promesas.{' '}
-          <Box component="span" sx={{ color: tokens.accentY }}>Más sitios funcionando.</Box>
-        </Typography>
-      </Container>
-    </Box>
+    <Box component="canvas" ref={ref} aria-hidden
+      sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }} />
   );
 }

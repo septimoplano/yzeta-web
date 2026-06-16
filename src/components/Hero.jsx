@@ -5,6 +5,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { tokens } from '../theme';
 import { waURL, MSG } from '../utils/whatsapp';
 import HeroShader from './HeroShader';
+import HeroDataField from './HeroDataField';
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -41,6 +42,15 @@ export default function Hero() {
         WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 30% 40%, #000 30%, transparent 100%)',
         animation: reduce ? 'none' : 'yz-grid-drift 8s linear infinite alternate',
       }} />
+      {/* Campo de datos animado — parte inferior del background, difuminado */}
+      <Box aria-hidden sx={{
+        position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 0,
+        height: { xs: '52%', md: '60%' }, overflow: 'hidden', pointerEvents: 'none', opacity: 0.55,
+        maskImage: 'linear-gradient(to top, #000 28%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(to top, #000 28%, transparent 100%)',
+      }}>
+        <HeroDataField />
+      </Box>
       {/* Shader del hero (fetch en runtime desde shaders.com, code-split) */}
       <Box aria-hidden sx={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
         <HeroShader />

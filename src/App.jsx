@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
-import DataStream from './components/DataStream';
 import Servicios from './components/Servicios';
 import Asesoria from './components/Asesoria';
 import ComoTrabajamos from './components/ComoTrabajamos';
@@ -22,7 +21,6 @@ function Home() {
       <Navbar />
       <main>
         <Hero />
-        <DataStream />
         <Servicios />
         <Asesoria />
         <ComoTrabajamos />
